@@ -1,0 +1,1202 @@
+# BUILD HOMECREW — COMPLETE FULL-STACK SOCIAL IMPACT PLATFORM
+
+Act as a Senior Full-Stack Engineer, Software Architect, UI/UX Designer and Backend Developer.
+
+Build a complete, functional, secure, responsive, production-oriented web application called **HomeCrew**.
+
+**Project Name:** HomeCrew  
+**Tagline:** Professional Hands in your Services  
+**Built by:** Team ShadowX Coders  
+**Hackathon Domain:** Social Impact  
+**Mission:** Connect customers with trusted nearby blue-collar workers within 30 minutes.
+
+## IMPORTANT DEVELOPMENT RULES
+
+- Build an actual working full-stack application, not just a visual prototype.
+- Use Antigravity for frontend development.
+- Use Google AI Studio to assist with backend code generation and development.
+- Use Firebase as the actual authentication, database and storage infrastructure.
+- Preserve existing working code and inspect the current project before making changes.
+- Do not unnecessarily rebuild existing functionality.
+- Do not create decorative buttons without working functionality.
+- Never fake successful API responses.
+- Never hardcode production credentials.
+- Clearly distinguish working features from simulated demo features.
+- Work phase by phase.
+- Test and fix errors before proceeding.
+- Do not dump the entire project in one response.
+- Maintain a functional application after every development phase.
+
+---
+
+# 1. PRODUCT CONCEPT
+
+HomeCrew is a hyperlocal service marketplace connecting customers with nearby blue-collar workers.
+
+Supported services include:
+
+- Plumbers
+- Electricians
+- Painters
+- Cleaners
+- Housemaids
+- Cooks
+- Carpenters
+- AC repair technicians
+- Appliance repair technicians
+- Other local service professionals
+
+### Core concept
+
+1. Customers discover nearby workers.
+2. Workers create profiles and set their own rates.
+3. Customers can request services and negotiate prices.
+4. Workers accept, reject or counter customer offers.
+5. Customers can book services immediately or schedule them.
+6. Both parties receive booking updates.
+7. Customers can contact workers through WhatsApp.
+8. Customers can track their active bookings.
+9. Workers receive opportunities to earn through local services.
+
+The platform should prioritize affordability, accessibility, employment opportunities, trust and safety.
+
+---
+
+# 2. TECHNOLOGY STACK
+
+Use the following technology stack.
+
+### Frontend
+
+- React.js
+- Vite
+- Tailwind CSS
+- Framer Motion
+- React Router DOM
+- Axios
+- i18next
+- Lucide React icons
+
+### Backend
+
+- Node.js
+- Express.js
+- REST APIs
+- Firebase Admin SDK
+- Socket.io where necessary
+- Multer where server-side file processing is required
+- Joi or Zod for validation
+
+### Firebase infrastructure
+
+Use Firebase instead of MongoDB.
+
+- Firebase Authentication: Google Sign-In and phone OTP authentication.
+- Cloud Firestore: Main application database.
+- Firebase Storage: Worker documents and profile images.
+- Firebase Security Rules: Database and file access protection.
+- Firebase Admin SDK: Secure server-side operations.
+- Firebase App Check where appropriate.
+
+### Development environment
+
+Use Google AI Studio to assist with backend development, code generation, API implementation and debugging.
+
+IMPORTANT: Google AI Studio is a development tool, not the application's database or backend hosting service. Generate actual Express backend code and connect it to Firebase.
+
+### Maps
+
+- Google Maps JavaScript API
+- Google Places API
+- Google Geocoding API
+- Google Routes API
+- Leaflet + OpenStreetMap as an optional fallback.
+
+### Communication
+
+- WhatsApp Business Cloud API.
+- WhatsApp Click-to-Chat fallback.
+
+Use environment variables for all API keys, credentials and secrets.
+
+---
+
+# 3. BRANDING AND DESIGN SYSTEM
+
+Use the attached official HomeCrew logo.
+
+### Brand colours
+
+- Dark Green: #0B5D43
+- Golden Yellow: #F9B000
+- Off-white: #FAFBF8
+
+### Typography
+
+- Poppins: Headings.
+- Inter: Body text.
+
+### Design direction
+
+Create a premium, minimalist, trustworthy and modern interface.
+
+The design should have:
+
+- Clean layouts.
+- Beautiful service cards.
+- Consistent spacing.
+- Professional dashboards.
+- Rounded corners.
+- Subtle shadows.
+- Smooth transitions.
+- Accessible contrast.
+- Large mobile touch targets.
+- Fully responsive layouts.
+
+Do not make the design look like a generic AI-generated dashboard.
+
+Use consistent branding across every page.
+
+### Logo animation
+
+Create an animated SVG version of the HomeCrew logo.
+
+Implement:
+
+1. Animated splash screen on first load, approximately 2.5 seconds and skippable.
+2. SVG house outline drawing animation.
+3. Worker icons appearing.
+4. Golden hand animation cradling the house.
+5. HomeCrew text appearing letter by letter.
+6. Tagline fading in.
+7. Smooth transition into the landing page.
+
+Additional animations:
+
+- Navbar logo hover animation.
+- Subtle yellow window glow.
+- Custom pulsing house loading animation.
+- Skeleton loaders.
+- Smooth page transitions.
+- Toast notifications.
+
+Use the supplied logo image as a static fallback and favicon.
+
+---
+
+# 4. AUTHENTICATION AND ACCOUNT MANAGEMENT
+
+Implement Firebase Authentication.
+
+Both Customer and Worker must be able to sign in using Google.
+
+### Authentication methods
+
+1. Continue with Google.
+2. Phone number authentication using OTP.
+3. Account recovery where applicable.
+
+Google Sign-In must work for both roles.
+
+### Registration flow
+
+Step 1: User opens HomeCrew.
+
+Step 2: User selects Continue with Google or phone authentication.
+
+Step 3: User chooses their role:
+
+- Customer
+- Worker
+
+Step 4: User completes the required profile information.
+
+Step 5: User is redirected to the correct dashboard.
+
+Returning users should go directly to their appropriate dashboard.
+
+### Customer profile fields
+
+- Full name.
+- Google email.
+- Mobile number.
+- WhatsApp number.
+- Profile picture.
+- Location.
+- Preferred language.
+
+### Worker profile fields
+
+- Full name.
+- Google email.
+- Mobile number.
+- WhatsApp number.
+- Profile picture.
+- Skills and services.
+- Service descriptions.
+- Experience.
+- Working area.
+- Location.
+- Hourly or fixed service rates.
+- Availability.
+- Identity verification documents.
+
+The mobile/WhatsApp number must be required when creating a profile.
+
+Allow users to specify whether their WhatsApp number is different from their mobile number.
+
+### Security
+
+- Use Firebase Authentication for identity management.
+- Verify authentication tokens on the Express backend.
+- Use Firebase Admin SDK for secure authorization.
+- Implement role-based permissions.
+- Protect private routes.
+- Implement logout and session handling.
+- Never allow users to assign themselves the admin role.
+- Admin privileges must be assigned through a trusted server-side process.
+- Never store passwords unnecessarily when using Google or Firebase phone authentication.
+
+---
+
+# 5. CUSTOMER EXPERIENCE
+
+Create the following pages:
+
+1. Home / Landing Page.
+2. Customer Dashboard.
+3. Find Nearby Workers.
+4. Worker Public Profile.
+5. Post a Job.
+6. Price Negotiation.
+7. Booking Confirmation.
+8. Live Job Tracking.
+9. Booking History.
+10. Rating and Reviews.
+11. Customer Profile.
+12. Notifications.
+13. Help and Support.
+14. About HomeCrew.
+15. Privacy Policy.
+16. Terms and Conditions.
+17. 404 Page.
+
+### Customer functionality
+
+- Search for services.
+- Search using location.
+- Detect current location with permission.
+- Browse workers using list and map views.
+- Filter workers by service, distance, price, rating, availability and verification.
+- View worker profiles.
+- View worker reviews.
+- View worker rates.
+- Send booking requests.
+- Post jobs with descriptions and photos.
+- Select immediate or scheduled bookings.
+- Negotiate prices.
+- Accept or reject counteroffers.
+- View booking confirmation.
+- Track worker arrival.
+- View booking status.
+- Cancel bookings according to defined booking rules.
+- Contact workers through WhatsApp.
+- Receive notifications.
+- Rate and review completed jobs.
+
+---
+
+# 6. WORKER EXPERIENCE
+
+Create the following pages:
+
+1. Worker Registration.
+2. Worker Dashboard.
+3. Edit Profile.
+4. Skills and Services Management.
+5. Set Own Rates.
+6. Availability Management.
+7. Incoming Job Requests.
+8. Price Negotiation.
+9. Active Jobs.
+10. Earnings Dashboard.
+11. Customer Reviews.
+12. Verification Status.
+13. Notifications.
+
+### Worker functionality
+
+Workers must be able to:
+
+- Create and edit profiles.
+- Upload profile pictures.
+- Add multiple skills.
+- Set their own rates.
+- Select their working area.
+- Set availability.
+- Receive nearby job requests.
+- Accept requests.
+- Reject requests.
+- Send counteroffers.
+- Negotiate prices.
+- Update job status.
+- Share location during active bookings.
+- View completed jobs.
+- View earnings summaries.
+- View customer reviews.
+- Submit identity documents.
+- Check verification status.
+
+Workers must be able to control their availability at any time.
+
+---
+
+# 7. WHATSAPP INTEGRATION
+
+Integrate WhatsApp into HomeCrew.
+
+Every customer and worker must provide a valid mobile/WhatsApp number during profile creation.
+
+### Basic WhatsApp functionality
+
+Implement WhatsApp Click-to-Chat using properly encoded phone numbers and messages.
+
+Example:
+
+https://wa.me/919876543210?text=Hi%2C%20I%20found%20your%20profile%20on%20HomeCrew.
+
+Do not hardcode this example number.
+
+Generate the link dynamically from the user's saved WhatsApp number.
+
+### WhatsApp buttons
+
+Add WhatsApp contact buttons to:
+
+- Worker public profiles.
+- Booking details.
+- Customer booking dashboard.
+- Worker job dashboard.
+- Customer support section.
+
+### Automated WhatsApp notifications
+
+Use the official WhatsApp Business Cloud API.
+
+Implement the following notification types:
+
+- New booking request.
+- Booking confirmation.
+- Booking acceptance.
+- Offer accepted.
+- Offer rejected.
+- Worker arrival.
+- Booking completion.
+
+Use backend environment variables:
+
+- WHATSAPP_ACCESS_TOKEN
+- WHATSAPP_PHONE_NUMBER_ID
+- WHATSAPP_BUSINESS_ACCOUNT_ID
+- WHATSAPP_VERIFY_TOKEN
+
+Requirements:
+
+- Never expose WhatsApp credentials in frontend code.
+- Use approved templates where required.
+- Respect messaging windows and user consent.
+- Handle API failures.
+- Log delivery status.
+- Do not claim a message was sent unless the API confirms it.
+
+If WhatsApp API credentials are unavailable, provide a working Click-to-Chat fallback.
+
+Clearly label automated notifications as requiring WhatsApp Business API configuration.
+
+### Privacy
+
+- Do not publicly expose personal phone numbers by default.
+- Allow communication through WhatsApp links only where appropriate.
+- Respect user consent.
+- Avoid unsolicited messages.
+
+---
+
+# 8. GOOGLE MAPS AND LOCATION SYSTEM
+
+Implement real Google Maps Platform integration.
+
+### Features
+
+- Interactive Google Maps.
+- Current location using browser geolocation.
+- Worker and customer markers.
+- Nearby worker discovery.
+- Address autocomplete.
+- Geocoding.
+- Reverse geocoding.
+- Distance calculation.
+- Route visualization.
+- Estimated arrival time.
+- Live worker location updates.
+
+Use real coordinates when available.
+
+Clearly label simulated coordinates for demo workers.
+
+### ETA calculation
+
+Use Google Routes API to calculate estimated travel time.
+
+When Google Maps API is unavailable, use a clearly labelled fallback estimate.
+
+Display:
+
+"Within 30 Minutes"
+
+ONLY when the actual available ETA calculation is 30 minutes or less.
+
+Never display a fabricated ETA as a verified real-time estimate.
+
+### Location privacy
+
+- Request browser location permission.
+- Explain why location is required.
+- Share worker location only during active bookings.
+- Stop location sharing when the job is completed or cancelled.
+- Restrict access to authorized booking participants.
+
+---
+
+# 9. JOB BOOKING AND NEGOTIATION
+
+Implement a complete booking and negotiation system.
+
+### Booking process
+
+1. Customer selects a service.
+2. Customer selects a nearby worker or posts a job.
+3. Customer enters the service description.
+4. Customer selects Now or Schedule.
+5. Customer submits the request.
+6. Worker receives a notification.
+7. Worker accepts, declines or sends a counteroffer.
+8. Customer responds.
+9. Both parties agree on a final price.
+10. Booking is confirmed.
+
+### Negotiation interface
+
+Create a modern chat-style negotiation page.
+
+Display:
+
+- Initial worker price.
+- Customer offer.
+- Worker counteroffer.
+- Offer history.
+- Accept button.
+- Decline button.
+- Counteroffer button.
+- Final agreed price.
+
+All offers must be saved in Firestore.
+
+Prevent unauthorized users from changing offers.
+
+Implement appropriate booking and offer status transitions.
+
+---
+
+# 10. REAL-TIME SYSTEM
+
+Use Firestore real-time listeners for live application updates.
+
+Use Socket.io where a persistent real-time communication channel is beneficial.
+
+Implement:
+
+- New booking requests.
+- New offers.
+- Counteroffers.
+- Offer acceptance.
+- Offer rejection.
+- Booking status updates.
+- Notifications.
+- Worker location updates.
+
+Persist all important messages, offers and booking updates in Firestore.
+
+Do not depend exclusively on in-memory Socket.io events for persistent data.
+
+---
+
+# 11. FIREBASE DATABASE ARCHITECTURE
+
+Use Cloud Firestore.
+
+Create organized collections:
+
+### users
+
+Fields:
+
+- uid
+- name
+- email
+- phoneNumber
+- whatsappNumber
+- profileImage
+- role
+- location
+- preferredLanguage
+- createdAt
+- updatedAt
+
+### workerProfiles
+
+Fields:
+
+- workerId
+- skills
+- services
+- experience
+- hourlyRate
+- availability
+- workingArea
+- location
+- verificationStatus
+- verificationDocumentUrls
+- averageRating
+- totalReviews
+- completedJobs
+- createdAt
+
+### jobs
+
+Fields:
+
+- customerId
+- workerId
+- service
+- description
+- images
+- location
+- scheduledAt
+- status
+- initialPrice
+- finalPrice
+- createdAt
+- updatedAt
+
+### offers
+
+Fields:
+
+- jobId
+- customerId
+- workerId
+- offeredAmount
+- counterAmount
+- status
+- offerHistory
+- createdAt
+
+### messages
+
+Fields:
+
+- jobId
+- senderId
+- receiverId
+- message
+- messageType
+- timestamp
+- readStatus
+
+### reviews
+
+Fields:
+
+- jobId
+- customerId
+- workerId
+- rating
+- comment
+- createdAt
+
+### notifications
+
+Fields:
+
+- userId
+- title
+- message
+- type
+- relatedJobId
+- isRead
+- createdAt
+
+### admins
+
+Store trusted administrator access separately.
+
+Never allow public registration to create an admin account.
+
+### Important Firebase requirements
+
+- Implement Firestore Security Rules.
+- Validate user ownership.
+- Protect private user information.
+- Restrict document access.
+- Validate data before writes.
+- Use server-side authorization for sensitive operations.
+- Add appropriate indexes.
+- Use geohash-based location queries for nearby workers.
+- Calculate actual distance after location filtering.
+- Use Firebase Storage security rules.
+
+Provide the Firestore collection structure and security rules.
+
+---
+
+# 12. BACKEND API
+
+Create a modular Express backend.
+
+Suggested endpoints:
+
+### Authentication
+
+- POST /api/auth/verify
+- GET /api/auth/me
+
+### Users
+
+- GET /api/users/me
+- PUT /api/users/me
+
+### Workers
+
+- GET /api/workers
+- GET /api/workers/:id
+- PUT /api/workers/profile
+- PUT /api/workers/availability
+- POST /api/workers/verification
+
+### Jobs
+
+- POST /api/jobs
+- GET /api/jobs/my
+- GET /api/jobs/:id
+- PATCH /api/jobs/:id/status
+- PATCH /api/jobs/:id/cancel
+
+### Offers
+
+- POST /api/jobs/:id/offers
+- PATCH /api/offers/:id
+
+### Reviews
+
+- POST /api/reviews
+- GET /api/workers/:id/reviews
+
+### Notifications
+
+- GET /api/notifications
+- PATCH /api/notifications/:id/read
+
+### WhatsApp
+
+- POST /api/whatsapp/send
+- GET /api/whatsapp/webhook
+- POST /api/whatsapp/webhook
+
+### Admin
+
+- GET /api/admin/users
+- GET /api/admin/jobs
+- GET /api/admin/pending-workers
+- PATCH /api/admin/workers/:id/verify
+
+Requirements:
+
+- Firebase Admin token verification.
+- Input validation.
+- Error handling.
+- Role-based middleware.
+- Ownership checks.
+- Rate limiting.
+- Helmet.
+- CORS configuration.
+- Secure file uploads.
+- Environment-based configuration.
+- Centralized error handling.
+
+Use Cloud Functions or Express backend routes for trusted server-side operations.
+
+---
+
+# 13. ADMIN DASHBOARD
+
+Create a protected admin dashboard.
+
+Features:
+
+- Platform overview.
+- Total users.
+- Total customers.
+- Total workers.
+- Total bookings.
+- Completed bookings.
+- Pending verification requests.
+- Worker management.
+- Customer management.
+- Booking management.
+- Review management.
+- Approve or reject worker verification.
+- Platform statistics.
+
+Only trusted administrators can access this dashboard.
+
+Do not provide a public admin registration page.
+
+---
+
+# 14. SEED AND DEMO DATA
+
+Create a demo data initialization script.
+
+Include:
+
+- 15 fictional workers across Mumbai.
+- Different skills and service rates.
+- Different ratings.
+- Verified and unverified workers.
+- 5 fictional customers.
+- Sample bookings.
+- Sample offers.
+- Sample reviews.
+- 1 protected admin account.
+
+Use clearly fictional identities and safe demo contact numbers.
+
+Create a documented demo setup process.
+
+Never include real customer information or real identity documents.
+
+---
+
+# 15. EXTRA FEATURES
+
+Implement:
+
+- English language.
+- Hindi language.
+- Marathi language.
+- Language selector.
+- Notification bell.
+- Unread notification counter.
+- SOS alert during active bookings.
+- Worker verification badges.
+- Search suggestions.
+- Booking history.
+- Responsive mobile navigation.
+- Profile management.
+- Privacy-conscious location sharing.
+- Accessible forms.
+- Empty states.
+- Error states.
+- Loading states.
+
+### SOS feature
+
+Create an SOS button during active bookings.
+
+For the hackathon demo, implement a clearly labelled simulated emergency alert.
+
+Do not claim to contact police or emergency services unless an actual authorized integration exists.
+
+### Footer
+
+Every page must include:
+
+"Built by Team ShadowX Coders"
+
+Use the HomeCrew branding and logo.
+
+---
+
+# 16. PROJECT STRUCTURE
+
+Use a clean monorepo structure.
+
+HomeCrew/
+
+- client/
+  - public/
+  - src/
+    - assets/
+    - components/
+    - pages/
+    - layouts/
+    - hooks/
+    - contexts/
+    - services/
+    - firebase/
+    - routes/
+    - translations/
+    - utils/
+    - App.jsx
+    - main.jsx
+
+- server/
+  - config/
+  - controllers/
+  - middleware/
+  - routes/
+  - services/
+  - utils/
+  - uploads/
+  - server.js
+
+- scripts/
+  - seed.js
+
+- package.json
+- .env.example
+- README.md
+
+You may adjust the structure when necessary, but maintain clear separation between frontend, backend and Firebase configuration.
+
+### Root development command
+
+Provide:
+
+npm run dev
+
+It must start both frontend and backend concurrently.
+
+Provide separate commands too:
+
+npm run client
+npm run server
+npm run build
+
+---
+
+# 17. ENVIRONMENT CONFIGURATION
+
+Create a comprehensive .env.example.
+
+Include placeholders for:
+
+Firebase configuration:
+
+- VITE_FIREBASE_API_KEY
+- VITE_FIREBASE_AUTH_DOMAIN
+- VITE_FIREBASE_PROJECT_ID
+- VITE_FIREBASE_STORAGE_BUCKET
+- VITE_FIREBASE_MESSAGING_SENDER_ID
+- VITE_FIREBASE_APP_ID
+
+Backend:
+
+- PORT
+- CLIENT_URL
+- FIREBASE_PROJECT_ID
+- FIREBASE_CLIENT_EMAIL
+- FIREBASE_PRIVATE_KEY
+
+Google Maps:
+
+- VITE_GOOGLE_MAPS_API_KEY
+- GOOGLE_MAPS_SERVER_API_KEY
+
+WhatsApp:
+
+- WHATSAPP_ACCESS_TOKEN
+- WHATSAPP_PHONE_NUMBER_ID
+- WHATSAPP_BUSINESS_ACCOUNT_ID
+- WHATSAPP_VERIFY_TOKEN
+
+Never commit real secrets or service-account credentials to GitHub.
+
+Restrict browser API keys by HTTP referrer and API permissions. Restrict server keys to the required APIs and server environment.
+
+---
+
+# 18. TESTING
+
+Test the complete application.
+
+### Authentication
+
+- Google Sign-In for customers.
+- Google Sign-In for workers.
+- Phone authentication.
+- Profile completion.
+- Role-based redirects.
+- Logout.
+- Unauthorized access prevention.
+
+### Customer functionality
+
+- Worker discovery.
+- Search and filters.
+- Booking creation.
+- Price negotiation.
+- Booking acceptance.
+- Booking cancellation.
+- Rating and reviews.
+
+### Worker functionality
+
+- Registration.
+- Profile editing.
+- Rate management.
+- Availability.
+- Booking requests.
+- Counteroffers.
+- Job status updates.
+- Document submission.
+
+### Integrations
+
+- Firebase database.
+- Firebase Storage.
+- Google Maps.
+- Geolocation.
+- WhatsApp Click-to-Chat.
+- WhatsApp Business API when credentials are configured.
+- Firestore real-time updates.
+- Socket.io events.
+
+### UI testing
+
+- Mobile responsiveness.
+- Desktop responsiveness.
+- Navigation.
+- Loading states.
+- Empty states.
+- Error handling.
+- Accessibility.
+
+Do not mark an integration as working until it has actually been tested.
+
+---
+
+# 19. DEPLOYMENT
+
+Prepare deployment instructions for:
+
+### Frontend
+
+Vercel.
+
+### Backend
+
+Render or another compatible Node.js hosting provider.
+
+### Database and Authentication
+
+Firebase.
+
+### Deployment requirements
+
+- Production environment variables.
+- Firebase authorized domains.
+- Firebase security rules.
+- Backend CORS configuration.
+- Google Maps API restrictions.
+- WhatsApp API configuration.
+- Production build verification.
+- GitHub deployment workflow.
+
+Provide a complete README containing:
+
+- Project introduction.
+- Features.
+- Technology stack.
+- Folder structure.
+- Installation instructions.
+- Firebase setup.
+- Google authentication setup.
+- Google Maps setup.
+- WhatsApp integration setup.
+- Environment variables.
+- Running locally.
+- Demo data.
+- Deployment steps.
+
+---
+
+# 20. EXECUTION PHASES
+
+Follow this exact order.
+
+## Phase 1: Project inspection and architecture
+
+- Inspect the existing HomeCrew project.
+- Understand its current folder structure.
+- Identify existing working features.
+- Identify missing features.
+- Prepare the final architecture.
+- Set up the project structure.
+- Configure Firebase.
+- Configure the backend.
+
+Do not delete existing working files.
+
+## Phase 2: Firebase and backend
+
+- Firebase Authentication.
+- Google Sign-In.
+- Phone OTP.
+- Firestore collections.
+- Security rules.
+- Firebase Storage.
+- Express APIs.
+- Authentication middleware.
+- Seed data.
+
+## Phase 3: Frontend foundation
+
+- Design system.
+- Global styles.
+- Navbar.
+- Footer.
+- Landing page.
+- Sign-in page.
+- Sign-up page.
+- Profile completion.
+- Protected routes.
+
+## Phase 4: Customer experience
+
+- Customer dashboard.
+- Worker discovery.
+- Search and filters.
+- Google Maps.
+- Worker profiles.
+- Job posting.
+
+## Phase 5: Worker experience
+
+- Worker dashboard.
+- Profile management.
+- Services and rates.
+- Availability.
+- Incoming requests.
+- Earnings.
+- Verification.
+
+## Phase 6: Booking and negotiation
+
+- Booking system.
+- Price negotiation.
+- Counteroffers.
+- Booking confirmation.
+- Booking history.
+- Status updates.
+
+## Phase 7: Real-time and communication
+
+- Firestore listeners.
+- Socket.io.
+- Worker location tracking.
+- WhatsApp Click-to-Chat.
+- WhatsApp Business Cloud API.
+- Notifications.
+
+## Phase 8: Admin and additional functionality
+
+- Admin dashboard.
+- Worker verification.
+- Reviews.
+- SOS.
+- Translations.
+- Help and support.
+
+## Phase 9: Final polish and deployment
+
+- Logo animations.
+- Page transitions.
+- Responsive optimization.
+- Accessibility.
+- Testing.
+- Bug fixes.
+- README.
+- Deployment preparation.
+
+---
+
+# 21. STRICT RULES FOR EVERY DEVELOPMENT PHASE
+
+After each phase:
+
+1. List all files created or modified.
+2. Explain what functionality was implemented.
+3. Explain how the frontend connects to the backend.
+4. Explain any Firebase configuration required.
+5. Run relevant tests.
+6. Show errors if any.
+7. Fix errors before moving forward.
+8. Confirm that the current phase works.
+
+Do not move to the next phase while critical errors remain unresolved.
+
+When an API key or external credential is required, tell me exactly where to obtain it and where to configure it.
+
+Do not invent API credentials.
+
+Do not replace real integrations with hardcoded demo data without clearly labelling them.
+
+Keep code modular, readable and beginner-friendly.
+
+Explain important technical decisions in simple language when needed.
+
+### GITHUB WORKFLOW
+
+This is a time-limited hackathon.
+
+Push code to the team's GitHub repository every two hours.
+
+Before each push:
+
+- Check changed files.
+- Run relevant tests.
+- Check for exposed secrets.
+- Commit with a meaningful message.
+- Push to the correct branch.
+
+Never commit .env files or Firebase service-account private keys.
+
+---
+
+# FINAL OBJECTIVE
+
+Deliver a complete, polished, functional HomeCrew platform that demonstrates meaningful social impact.
+
+HomeCrew should make it easier for customers to find trusted local workers while creating accessible earning opportunities for blue-collar professionals.
+
+The final application must demonstrate:
+
+- Real Google authentication.
+- Real Firebase database integration.
+- Customer and worker role separation.
+- Real worker discovery.
+- Functional bookings.
+- Price negotiation.
+- WhatsApp communication.
+- Location-based services.
+- Worker verification.
+- Responsive professional UI.
+- Secure backend operations.
+
+**Build a real product, not just a hackathon presentation prototype.**
+
+**Project tagline: Professional Hands in your Services.**
+
+**Built by Team ShadowX Coders.**

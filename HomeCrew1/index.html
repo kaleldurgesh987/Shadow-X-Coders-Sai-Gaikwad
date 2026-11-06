@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      (function() {
+        var RealWebSocket = window.WebSocket;
+        if (RealWebSocket) {
+          window.WebSocket = function(url, protocols) {
+            if (protocols === 'vite-hmr' || (typeof url === 'string' && url.indexOf('vite-hmr') !== -1)) {
+              return {
+                binaryType: 'blob',
+                readyState: 3,
+                bufferedAmount: 0,
+                extensions: '',
+                protocol: 'vite-hmr',
+                url: String(url),
+                addEventListener: function() {},
+                removeEventListener: function() {},
+                dispatchEvent: function() { return false; },
+                send: function() {},
+                close: function() {},
+                onopen: null,
+                onmessage: null,
+                onerror: null,
+                onclose: null
+              };
+            }
+            return new RealWebSocket(url, protocols);
+          };
+          window.WebSocket.prototype = RealWebSocket.prototype;
+          window.WebSocket.CONNECTING = RealWebSocket.CONNECTING;
+          window.WebSocket.OPEN = RealWebSocket.OPEN;
+          window.WebSocket.CLOSING = RealWebSocket.CLOSING;
+          window.WebSocket.CLOSED = RealWebSocket.CLOSED;
+        }
+
+        window.addEventListener('unhandledrejection', function(event) {
+          var reason = event && (event.reason || event);
+          var msg = (reason && reason.message) || String(reason || '');
+          if (msg.indexOf('WebSocket') !== -1 || msg.indexOf('websocket') !== -1) {
+            event.preventDefault();
+            event.stopPropagation();
+            event.stopImmediatePropagation();
+          }
+        }, true);
+
+        window.addEventListener('error', function(event) {
+          var msg = (event && event.message) || '';
+          if (msg.indexOf('WebSocket') !== -1 || msg.indexOf('websocket') !== -1) {
+            event.preventDefault();
+            event.stopPropagation();
+            event.stopImmediatePropagation();
+          }
+        }, true);
+      })();
+    </script>
+    <title>HomeCrew - Professional Hands in your Services</title>
+    <meta name="description" content="Hyperlocal service marketplace connecting customers with trusted nearby blue-collar workers within 30 minutes. Built by Team ShadowX Coders." />
+    <meta property="og:title" content="HomeCrew - Professional Hands in your Services" />
+    <meta property="og:description" content="Hyperlocal service marketplace connecting customers with trusted nearby blue-collar workers within 30 minutes. Built by Team ShadowX Coders." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" type="image/png" href="/assets/aistudio/image_0a10529d.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  </head>
+  <body class="font-sans antialiased text-gray-900 bg-[#FAFBF8]">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+

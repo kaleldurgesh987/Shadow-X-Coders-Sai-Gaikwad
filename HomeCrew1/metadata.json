@@ -1,0 +1,10 @@
+{
+  "name": "HomeCrew",
+  "description": "Hyperlocal service marketplace connecting customers with trusted nearby blue-collar workers within 30 minutes. Built by Team ShadowX Coders.",
+  "requestFramePermissions": [
+    "geolocation"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

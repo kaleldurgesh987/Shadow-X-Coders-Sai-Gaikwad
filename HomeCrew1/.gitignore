@@ -1,32 +1,9 @@
-# Environment
-.env
-.env.local
-.env.production
-
-# Firebase service account
-firebase-service-account.json
-*-service-account.json
-
-# Node
 node_modules/
-*/node_modules/
-
-# Build outputs
-client/dist/
-server/dist/
-
-# Logs
-*.log
-npm-debug.log*
-
-# OS
+build/
+dist/
+coverage/
 .DS_Store
-Thumbs.db
-
-# IDE
-.vscode/settings.json
-.idea/
-
-# Uploads (local dev)
-server/uploads/*
-!server/uploads/.gitkeep
+*.log
+.env*
+!.env.example
+.gmp_cache/

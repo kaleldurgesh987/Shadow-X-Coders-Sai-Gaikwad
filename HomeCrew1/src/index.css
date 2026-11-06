@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+  h1, h2, h3, h4, h5, h6, .font-heading {
+    font-family: 'Poppins', sans-serif;
+  }
+}
+
+@keyframes windowPulse {
+  0%, 100% {
+    opacity: 0.85;
+    filter: drop-shadow(0 0 2px #F9B000);
+  }
+  50% {
+    opacity: 1;
+    filter: drop-shadow(0 0 6px #F9B000);
+  }
+}
+
+.window-glow {
+  animation: windowPulse 2.5s ease-in-out infinite;
+}
